@@ -29,5 +29,7 @@
     <string name="menu_name">메뉴 이름</string>
     <string name="menu_price">메뉴 가격</string>
     <string name="menu_imege">메뉴 사진</string>
+    <string name="sign_up">회원가입</string>
+    <string name="check">확인</string>
 
 </resources>
