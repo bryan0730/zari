@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedReader;
@@ -25,9 +26,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class SignUpActivity extends AppCompatActivity {
+    private final String MANAGER = "사업자";
+
     private EditText editTextTextId, editTextTextPassword, editTextTextPassword2, editTextTextPersonName, editTextPhone;
     private TextView birthTextView, checkTextView;
-    private RadioGroup genderRadioGroup;
+    private RadioGroup genderRadioGroup, serviceRadioGroup;
 
     private boolean checkPw = false;
 
@@ -36,20 +39,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sign_up);
         init();
-
-        if(BirthActivity.check){
-            Intent pickerData = getIntent();
-            if(pickerData.getStringExtra("yy")!=null && pickerData.getStringExtra("mm") != null && pickerData.getStringExtra("dd") != null){
-                String year = pickerData.getExtras().getString("yy");
-                String month = pickerData.getExtras().getString("mm");
-                String day = pickerData.getExtras().getString("dd");
-                birthTextView.setText(year+"/"+month+"/"+day);
-            }
-            else{
-                Toast.makeText(getApplicationContext(),"년월일을 다시 입력해주세요",Toast.LENGTH_SHORT).show();
-            }
-        }
-
     }
 
     private void init(){
@@ -58,6 +47,7 @@ public class SignUpActivity extends AppCompatActivity {
         editTextTextId = findViewById(R.id.editTextId);
         editTextTextPassword = findViewById(R.id.editTextPassword);
         editTextTextPassword2 = findViewById(R.id.editTextTextPassword2);
+        serviceRadioGroup = findViewById(R.id.serviceRadioGroup);
         editTextTextPassword2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -88,17 +78,34 @@ public class SignUpActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == -1) {
+            switch (requestCode){
+                case 3000 :
+                        String year = data.getExtras().getString("yy");
+                        String month = data.getExtras().getString("mm");
+                        String day = data.getExtras().getString("dd");
+                        birthTextView.setText(year + "/" + month + "/" + day);
+            }
+        }
+    }
+
     public void goBirthActivity(View v){
         Intent intent = new Intent(SignUpActivity.this, BirthActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 3000);
     }
 
     public void onClickSignUp(View v){
+        /*
         if (!checkPw || editTextTextPassword.getText().length()<0 || editTextPhone.getText().length()<0 ||
                 editTextTextId.getText().length()<0 || birthTextView.getText() == "" || editTextTextPersonName.getText().length()<0 || !genderRadioGroup.isClickable()){
             Toast.makeText(SignUpActivity.this, "다시 확인해 주세요.", Toast.LENGTH_LONG).show();
             return;
         }
+
+         */
 
         SecurityUtil securityUtil = new SecurityUtil();
         String name = editTextTextPersonName.getText().toString();
@@ -109,9 +116,18 @@ public class SignUpActivity extends AppCompatActivity {
         String birth = birthTextView.getText().toString();
         String gender = ((RadioButton)findViewById(genderRadioGroup.getCheckedRadioButtonId())).getText().toString();
 
+        String userAuth = ((RadioButton)findViewById(serviceRadioGroup.getCheckedRadioButtonId())).getText().toString();
+        Log.i("SignUpActivity : ",userAuth);
+        if(userAuth.equals(MANAGER)){
+            userAuth = "1";
+        } else{
+            userAuth = "0";
+        }
+
         InsertData task = new InsertData();
-        task.execute("http://192.168.25.3/insert.php", name, id, enPw, phone, birth, gender);
+        task.execute("http://192.168.0.35/mtest.php", name, id, enPw, phone, birth, gender, userAuth);
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+        startActivity(intent);
         finish();
 
     }
@@ -142,9 +158,10 @@ public class SignUpActivity extends AppCompatActivity {
             String phone = (String) params[4];
             String birth = (String) params[5];
             String gender = (String) params[6];
+            String authority = (String) params[7];
             String serverURL = (String) params[0];
 
-            String postParameters = "name="+ name + "&id="+ id + "&pw="+pw +"&phone="+phone+"&birth="+birth+"&gender="+gender+"&authority="+1;
+            String postParameters = "name="+ name + "&id="+ id + "&pw="+pw +"&phone="+phone+"&birth="+birth+"&gender="+gender+"&authority="+authority;
 
             try {
                 URL url = new URL(serverURL);

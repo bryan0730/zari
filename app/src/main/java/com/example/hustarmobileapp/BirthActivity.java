@@ -2,6 +2,7 @@ package com.example.hustarmobileapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.DatePicker;
 
@@ -32,11 +33,16 @@ public class BirthActivity extends AppCompatActivity {
     }
 
     public void onClickBirth(View v){
-        Intent intent = new Intent(BirthActivity.this,SignUpActivity.class);
+        Intent intent = new Intent();
         intent.putExtra("yy",yy);
         intent.putExtra("mm",mm);
         intent.putExtra("dd",dd);
-        startActivity(intent);
+
+        Log.i("yy", yy);
+        Log.i("mm", mm);
+        Log.i("dd", dd);
+
+        setResult(RESULT_OK, intent);
         finish();
     }
 }
