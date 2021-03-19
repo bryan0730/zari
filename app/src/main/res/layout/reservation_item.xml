@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+
+    <TextView
+        android:id="@+id/reservationTableNameTextViex"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="#BFBFBF"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/reservationPeopleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="#BFBFBF"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+    v
+
+    <TextView
+        android:id="@+id/reservationDateTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="3dp"
+        android:layout_weight="1"
+        android:background="#BFBFBF"
+        android:gravity="center_vertical"
+        android:textColor="@color/black"
+        android:textSize="24sp" />
+
+    <Button
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+
+        android:layout_weight="0.5"
+        android:gravity="center|center_vertical"
+        android:onClick="onClickReserveComplete"
+        android:text="@string/complete"
+        android:textColor="@color/black" />
+</LinearLayout>

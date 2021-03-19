@@ -20,7 +20,7 @@
     <string name="store">매장 이름</string>
     <string name="category">카테고리</string>
     <string name="address">주소</string>
-    <string name="table">테이블 수</string>
+    <string name="table_number">테이블 수</string>
     <string name="menu">메뉴</string>
     <string name="store_phone">매장 번호</string>
     <string name="store_intro">매장 소개</string>
@@ -29,5 +29,29 @@
     <string name="menu_name">메뉴 이름</string>
     <string name="menu_price">메뉴 가격</string>
     <string name="menu_imege">메뉴 사진</string>
+    <string name="menu_add">메뉴 추가</string>
+    <string name="menu_modify">메뉴 수정</string>
+    <string name="modify">수정</string>
+    <string name="delete">삭제</string>
+    <string name="table">테이블</string>
+    <string name="member_modify">회원 정보 수정</string>
+    <string name="total_member">총 인원</string>
+    <string name="total_sales">총 매출</string>
+    <string name="check">확인</string>
+    <string name="store_delete">정말 삭제하시겠습니까?</string>
+    <string name="sales">매출</string>
+    <string name="reservation_list">예약 현황</string>
+    <string name="complete">완료</string>
+    <string name="menu_order">메뉴 주문</string>
+    <string name="price">가격</string>
+    <string name="order">주문</string>
+    <string name="pay">계산</string>
+    <string name="table_select">예약하실 테이블을 선택해주세요.</string>
+    <string name="korean">한식</string>
+    <string name="grade">평점</string>
+    <string name="map">지도</string>
+    <string name="people">인원</string>
+    <string name="table_reservation_condition">테이블 현황 및 예약</string>
+
 
 </resources>

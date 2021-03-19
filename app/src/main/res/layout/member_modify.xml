@@ -24,9 +24,10 @@
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
         android:layout_marginTop="20dp"
-        android:text="@string/join"
+        android:text="@string/member_modify"
         android:textColor="@color/black"
         android:textSize="18sp" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +36,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
+        android:background="#BFBFBF"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -50,7 +52,6 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/joinIdEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -284,11 +285,12 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/button5"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="0.5"
             android:background="@drawable/button"
-            android:onClick="onClickBirth"
+            android:onClick="onClickModifyBirth"
             android:text="@string/register" />
     </LinearLayout>
     <View
@@ -324,7 +326,7 @@
             android:textSize="18sp" />
 
         <RadioGroup
-            android:id="@+id/joinGenderRadioButton"
+            android:id="@+id/modifyGenderRadioButton"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -365,8 +367,8 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:background="@color/black"
-        android:onClick="joinGenderRadioButton"
-        android:text="@string/login"
+        android:onClick="onClickModifyMemberInfo"
+        android:text="@string/modify"
         android:textColor="@color/white"
         android:textSize="17sp" />
 
