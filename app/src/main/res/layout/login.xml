@@ -108,7 +108,8 @@
             android:ems="10"
             android:inputType="textPassword"
             android:textColor="@color/black"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -135,7 +136,7 @@
         android:onClick="onClickLogin"
         android:text="@string/login"
         android:textColor="@color/white"
-        android:textSize="17sp"/>
+        android:textSize="17sp" />
 
     <Button
         android:id="@+id/button4"

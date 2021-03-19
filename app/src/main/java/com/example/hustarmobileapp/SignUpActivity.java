@@ -51,7 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
         editTextTextPassword2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -69,7 +68,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
             }
         });
         editTextTextPersonName = findViewById(R.id.editTextTextPersonName);
@@ -84,10 +82,10 @@ public class SignUpActivity extends AppCompatActivity {
         if (resultCode == -1) {
             switch (requestCode){
                 case 3000 :
-                        String year = data.getExtras().getString("yy");
-                        String month = data.getExtras().getString("mm");
-                        String day = data.getExtras().getString("dd");
-                        birthTextView.setText(year + "/" + month + "/" + day);
+                    String year = data.getExtras().getString("yy");
+                    String month = data.getExtras().getString("mm");
+                    String day = data.getExtras().getString("dd");
+                    birthTextView.setText(year + "/" + month + "/" + day);
             }
         }
     }

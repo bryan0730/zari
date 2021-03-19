@@ -65,13 +65,15 @@
                     android:id="@+id/cateTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
                 <Spinner
-                    android:id="@+id/spinner"
+                    android:id="@+id/storeCategorySpinner"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="2" />
+                    android:layout_weight="1" />
 
             </LinearLayout>
 
@@ -144,11 +146,11 @@
 
                 <TextView
                     android:id="@+id/textView20"
-                    android:layout_width="0dp"
+                    android:layout_width="22dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="15dp"
                     android:layout_marginRight="15dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:text="@string/address"
                     android:textColor="@color/black"
                     android:textSize="18sp" />
@@ -161,7 +163,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:textColor="@color/black"
-                    android:textSize="18sp" />
+                    android:textSize="10sp" />
 
                 <Button
                     android:id="@+id/button20"
@@ -169,6 +171,7 @@
                     android:layout_height="30dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/button"
+                    android:onClick="goAddressWeb"
                     android:text="@string/register" />
 
 
@@ -185,17 +188,20 @@
                 android:layout_marginBottom="10dp"
                 android:background="#C8C8C8" />
 
-            <TextView
-                android:id="@+id/storeAddressTextView"
+            <EditText
+                android:id="@+id/storeAdEditText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="50dp"
                 android:layout_marginLeft="50dp"
                 android:layout_marginEnd="50dp"
                 android:layout_marginRight="50dp"
-                android:layout_weight="1"
-                android:textColor="@color/black"
-                android:textSize="18sp" />
+                android:background="@null"
+                android:ems="10"
+                android:hint="@string/address_hint"
+                android:inputType="text"
+                android:privateImeOptions="defaultnputmode=korean"
+                android:textColor="@color/black" />
 
             <View
                 android:layout_width="match_parent"
@@ -331,7 +337,6 @@
                     android:layout_height="30dp"
                     android:layout_weight="0.5"
                     android:background="@drawable/button"
-                    android:onClick="addStoreImage"
                     android:text="@string/register" />
 
 
@@ -403,11 +408,10 @@
                 android:layout_marginEnd="50dp"
                 android:layout_marginRight="50dp"
                 android:background="@color/black"
-                android:onClick="onClickAddStore "
-                android:text="@string/register"
+                android:onClick="onClickAddStore"
+                android:text="@string/store_add"
                 android:textColor="@color/white"
                 android:textSize="17sp" />
-
 
             <Button
                 android:id="@+id/button7"

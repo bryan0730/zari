@@ -12,8 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.HustarMobileApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".BirthActivity"></activity>
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".AddressWebViewActivity"/>
+        <activity android:name=".AddStoreActivity"></activity>
+        <activity android:name=".TestUserActivity" />
+        <activity android:name=".TestMasterActivity" />
+        <activity android:name=".BirthActivity" />
+        <activity android:name=".SignUpActivity" /> <!-- ttttttt -->
+        <activity android:name=".LoginActivity"/>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -2,22 +2,31 @@ package com.example.hustarmobileapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.user_store_page);
+        setContentView(R.layout.intro);
 
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent intent = new Intent (MainActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        }, 2000);
+    }
 
-       // setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }
-
-
-

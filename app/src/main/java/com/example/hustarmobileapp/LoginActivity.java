@@ -125,6 +125,10 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(masterIntent);
                             finish();
                         }
+                        if(this.getStatus() == AsyncTask.Status.RUNNING) {
+                            this.cancel(true);
+                            Log.i(TAG, "Login status - " + this.getStatus());
+                        }
                 }
             }
         }

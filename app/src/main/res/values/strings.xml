@@ -52,6 +52,11 @@
     <string name="map">지도</string>
     <string name="people">인원</string>
     <string name="table_reservation_condition">테이블 현황 및 예약</string>
+    <string name="store_add">매장등록</string>
+    <string name="user">고객</string>
+    <string name="manager">사업자</string>
+    <string name="choice_service">사업자 선택</string>
+    <string name="result">address</string>
 
     <string name="sign_up">회원가입</string>
 
