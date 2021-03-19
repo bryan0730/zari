@@ -51,19 +51,13 @@
 
     </LinearLayout>
 
-    <GridView
+    <androidx.gridlayout.widget.GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:columnWidth="150dp"
-        android:gravity="center"
-        android:horizontalSpacing="10dp"
-        android:numColumns="auto_fit"
-        android:onClick="onClickCheckTable"
-        android:stretchMode="columnWidth"
-        android:verticalSpacing="10dp">
+        android:padding="10dp">
 
-    </GridView>
+    </androidx.gridlayout.widget.GridLayout>
 
     <TextView
         android:id="@+id/textView27"

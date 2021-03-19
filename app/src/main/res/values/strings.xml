@@ -57,7 +57,15 @@
     <string name="manager">사업자</string>
     <string name="choice_service">사업자 선택</string>
     <string name="result">address</string>
-
     <string name="sign_up">회원가입</string>
+    <string name="write_review">리뷰쓰기</string>
+    <string name="rating">별점</string>
+    <string name="date">날짜</string>
+    <string name="comment">코멘트</string>
+    <string name="reserve_check">예약하시겠습니까?</string>
+    <string name="reservation">예약</string>
+    <string name="reservation_condition">예약 내역</string>
+    <string name="address_hint">주소를 입력하세요.</string>
+    <string name="add_menu">메뉴 등록</string>
 
 </resources>
