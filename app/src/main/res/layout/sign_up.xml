@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
         android:layout_marginLeft="35dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
         android:adjustViewBounds="true"
         android:maxWidth="200dp"
         android:scaleType="centerCrop"
@@ -50,7 +50,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/joinIdEditText"
+            android:id="@+id/editTextId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -96,7 +96,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/modifyPwEditText"
+            android:id="@+id/editTextPassword"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -144,7 +144,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/modifyPwConfirmEditText"
+            android:id="@+id/editTextTextPassword2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"
@@ -153,7 +153,25 @@
             android:inputType="textPassword"
             android:textColor="@color/black"
             android:textSize="18sp" />
+
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/pwCheckTextView"
+            android:layout_width="308dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginEnd="50dp"
+            android:layout_marginRight="50dp" />
+
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -188,7 +206,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/modifyNameEditText"
+            android:id="@+id/editTextTextPersonName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -196,7 +214,8 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:privateImeOptions="defaultInputmode=korean"/>
 
     </LinearLayout>
     <View
@@ -232,13 +251,13 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/modifyPhoneNumberEditText"
+            android:id="@+id/editTextPhone"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:background="@null"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="phone"
             android:textColor="@color/black"
             android:textSize="18sp" />
     </LinearLayout>
@@ -274,7 +293,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/birthTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="10dp"
@@ -284,11 +303,12 @@
             android:textSize="18sp" />
 
         <Button
+            android:id="@+id/button5"
             android:layout_width="0dp"
             android:layout_height="30dp"
             android:layout_weight="0.5"
             android:background="@drawable/button"
-            android:onClick="onClickBirth"
+            android:onClick="goBirthActivity"
             android:text="@string/register" />
     </LinearLayout>
     <View
@@ -313,7 +333,7 @@
 
 
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/genderTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="40dp"
@@ -324,7 +344,7 @@
             android:textSize="18sp" />
 
         <RadioGroup
-            android:id="@+id/joinGenderRadioButton"
+            android:id="@+id/genderRadioGroup"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="2"
@@ -345,6 +365,62 @@
                 android:text="@string/man" />
         </RadioGroup>
     </LinearLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:background="#C8C8C8" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_weight="1"
+            android:text="@string/choice_service"
+            android:textColor="#0B0B0B"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:id="@+id/serviceRadioGroup"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginRight="20dp"
+                android:text="@string/manager" />
+
+            <RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user" />
+        </RadioGroup>
+    </LinearLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
@@ -365,8 +441,8 @@
         android:layout_marginEnd="50dp"
         android:layout_marginRight="50dp"
         android:background="@color/black"
-        android:onClick="joinGenderRadioButton"
-        android:text="@string/login"
+        android:onClick="onClickSignUp"
+        android:text="@string/sign_up"
         android:textColor="@color/white"
         android:textSize="17sp" />
 
@@ -377,7 +453,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="20dp"
         android:background="@drawable/button"
-        android:onClick="onClickCancel"
         android:text="@string/cancel"
         android:textColor="@color/black" />
 

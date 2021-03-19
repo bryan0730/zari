@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="@string/menu_add"
+        android:text="@string/birth"
         android:textColor="@color/black"
         android:textSize="24sp" />
 
@@ -92,7 +92,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/joinIdEditText"
+            android:id="@+id/editTextId"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -125,7 +125,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/birthTextView"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1.5"

@@ -53,5 +53,6 @@
     <string name="people">인원</string>
     <string name="table_reservation_condition">테이블 현황 및 예약</string>
 
+    <string name="sign_up">회원가입</string>
 
 </resources>
