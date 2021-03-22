@@ -3,22 +3,28 @@
     package="com.example.hustarmobileapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.HustarMobileApp"
         android:usesCleartextTraffic="true">
-        <activity android:name=".AddressWebViewActivity"/>
-        <activity android:name=".AddStoreActivity"></activity>
-        <activity android:name=".TestUserActivity" />
-        <activity android:name=".TestMasterActivity" />
+        <!--<activity android:name=".MenuOrderCustomDialog"
+            android:screenOrientation="landscape"/> -->
+        <activity android:name=".AddressWebViewActivity" />
+        <activity android:name=".AddStoreActivity" />
+        <activity
+            android:name=".MasterPostActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".BirthActivity" />
-        <activity android:name=".SignUpActivity" /> <!-- ttttttt -->
-        <activity android:name=".LoginActivity"/>
+        <activity android:name=".SignUpActivity" /> <!-- tttttttt -->
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

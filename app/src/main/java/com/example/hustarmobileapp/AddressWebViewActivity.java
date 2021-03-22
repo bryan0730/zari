@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class AddressWebViewActivity extends AppCompatActivity {
+    private static String IP_ADDRESS = "192.168.0.35";
+
     private WebView webView;
     private TextView result;
     private Handler handler;
@@ -32,7 +34,7 @@ public class AddressWebViewActivity extends AppCompatActivity {
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.addJavascriptInterface(new AndroidBridge(), "Zari");
         webView.setWebChromeClient(new WebChromeClient());
-        webView.loadUrl("http://192.168.0.35/addressweb.php");
+        webView.loadUrl("http://"+IP_ADDRESS+"/addressweb.php");
     }
     public void onClickaddAd(View v){
         String addressResult = result.getText().toString();

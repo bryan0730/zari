@@ -148,7 +148,7 @@
         android:background="#C8C8C8" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/storeSalesOkbutton"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/black"
@@ -163,7 +163,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button7"
+            android:id="@+id/addMenuCancelButton"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:layout_gravity="center"

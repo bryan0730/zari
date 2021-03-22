@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class LoginActivity extends AppCompatActivity {
+    private static String IP_ADDRESS="192.168.0.35";
     private final String TAG = "LoginActivity";
     private EditText editTextId, editTextPw;
     private TextView testTextView, resultTextView;
@@ -33,7 +34,9 @@ public class LoginActivity extends AppCompatActivity {
     private int seq;
     private String name;
     private int auth;
+    private int tableCount;
     private String storeSeq;
+    private String tableSeq;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void init(){
-        editTextId = findViewById(R.id.editTextId);
+        editTextId = findViewById(R.id.menuPriceEditText);
         editTextPw = findViewById(R.id.editTextPassword);
 
         testTextView = findViewById(R.id.testTextView);
@@ -64,7 +67,7 @@ public class LoginActivity extends AppCompatActivity {
         pw = securityUtil.encryptSHA256(pw);
 
         GetData task = new GetData();
-        task.execute("http://192.168.0.35/select.php", id, pw);
+        task.execute("http://"+IP_ADDRESS+"/select.php", id, pw);
     }
 
     private class GetData extends AsyncTask<String, Void, String>{
@@ -84,24 +87,30 @@ public class LoginActivity extends AppCompatActivity {
             Log.d(TAG, "result - ::::::::::::::::::"+result);
 
             if (result == ""){
-                testTextView.setText("sdfssdfsfsfsdfsf");
-                AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                builder.setTitle("LOGIN").setMessage("ID/PW가 일치하지 않습니다.");
-                builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        dialogInterface.dismiss();
-                    }
-                });
-                builder.show();
+
             }else {
                 testTextView.setText("완료");
                 mJasonString = result;
                 showResult();
+                Log.i(TAG, "NAEM :: "+name);
+                if(name == null){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setTitle("LOGIN").setMessage("ID/PW가 일치하지 않습니다.");
+                    builder.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            dialogInterface.dismiss();
+                        }
+                    });
+                    builder.show();
+                    editTextId.setText("");
+                    editTextPw.setText("");
+                    return;
+                }
                 switch (auth){
                     case 0:
                         Log.i(TAG, "USER");
-                        Intent userIntent = new Intent(LoginActivity.this, TestUserActivity.class);
+                        Intent userIntent = new Intent(LoginActivity.this, MainActivity.class);
                         userIntent.putExtra("seq", seq);
                         userIntent.putExtra("name", name);
                         userIntent.putExtra("auth", auth);
@@ -118,10 +127,13 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(addStoreIntent);
                             finish();
                         }else{
-                            Intent masterIntent = new Intent(LoginActivity.this, TestMasterActivity.class);
-                            masterIntent.putExtra("seq", seq);
+                            Intent masterIntent = new Intent(LoginActivity.this, MasterPostActivity.class);
+                            masterIntent.putExtra("memberSeq", seq);
                             masterIntent.putExtra("name", name);
                             masterIntent.putExtra("auth", auth);
+                            masterIntent.putExtra("storeSeq", Integer.parseInt(storeSeq));
+                            masterIntent.putExtra("tableCount", tableCount);
+                            masterIntent.putExtra("tableSeq", Integer.parseInt(tableSeq));
                             startActivity(masterIntent);
                             finish();
                         }
@@ -189,6 +201,8 @@ public class LoginActivity extends AppCompatActivity {
             String TAG_AUTH = "authority";
             String TAG_NAME = "name";
             String TAG_STORE_SEQ = "have";
+            String TAG_TABLE_COUNT = "tableCount";
+            String TAG_TABLE_SEQ = "tableSeq";
 
             try {
                 JSONObject jsonObject = new JSONObject(mJasonString);
@@ -199,6 +213,8 @@ public class LoginActivity extends AppCompatActivity {
                 name = item.getString(TAG_NAME);
                 auth = item.getInt(TAG_AUTH);
                 storeSeq = item.getString(TAG_STORE_SEQ);
+                tableCount = item.getInt(TAG_TABLE_COUNT);
+                tableSeq = Integer.toString(item.getInt(TAG_TABLE_SEQ));
 
                 Log.i(TAG,name+", "+seq + ", "+auth + ", "+storeSeq);
             } catch (JSONException e) {

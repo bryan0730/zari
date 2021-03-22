@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:text="@string/birth"
+        android:text="@string/menu_add"
         android:textColor="@color/black"
         android:textSize="24sp" />
 
@@ -33,11 +33,17 @@
             android:textColor="@color/black"
             android:textSize="18sp" />
 
-        <Spinner
-            android:id="@+id/storeCategorySpinner"
+        <EditText
+            android:id="@+id/menuCateEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2" />
+            android:layout_weight="2"
+            android:background="@null"
+            android:ems="10"
+            android:importantForAutofill="no"
+            android:inputType="textPersonName"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
 
     </LinearLayout>
 
@@ -61,11 +67,13 @@
             android:textSize="18sp" />
 
         <EditText
+            android:id="@+id/menuNameEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:background="@null"
             android:ems="10"
+            android:importantForAutofill="no"
             android:inputType="textPersonName"
             android:textColor="@color/black"
             android:textSize="18sp" />
@@ -92,7 +100,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextId"
+            android:id="@+id/menuPriceEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -100,7 +108,8 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:textColor="@color/black"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:importantForAutofill="no" />
 
     </LinearLayout>
 
@@ -148,7 +157,7 @@
         android:background="#C8C8C8" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/storeSalesOkbutton"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/black"
@@ -157,7 +166,7 @@
         android:textSize="17sp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/addMenuCancelButton"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center"

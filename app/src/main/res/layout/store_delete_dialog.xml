@@ -21,7 +21,7 @@
         android:textSize="18sp" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/storeSalesOkbutton"
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:background="@color/black"
@@ -31,7 +31,7 @@
         android:textSize="17sp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/addMenuCancelButton"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:layout_gravity="center"

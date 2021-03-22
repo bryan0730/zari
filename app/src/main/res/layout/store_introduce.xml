@@ -36,7 +36,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/storeIntroduceTextView"
+                android:id="@+id/storeSalesPerson"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -66,7 +66,7 @@
                 android:textSize="18sp" />
 
             <TextView
-                android:id="@+id/storeAddressTextview"
+                android:id="@+id/storeSalesPrice"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -123,7 +123,7 @@
             android:background="#C8C8C8" />
 
         <Button
-            android:id="@+id/button8"
+            android:id="@+id/storeSalesOkbutton"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_marginTop="100dp"

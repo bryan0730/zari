@@ -7,18 +7,7 @@
 
     <TextView
         android:id="@+id/orderMenuNameTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="3dp"
-        android:layout_weight="2"
-        android:background="#BFBFBF"
-        android:gravity="center_vertical"
-        android:textColor="@color/black"
-        android:textSize="24sp" />
-
-    <TextView
-        android:id="@+id/orderMenuCountTextView"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
         android:layout_weight="1"
@@ -29,8 +18,8 @@
 
     <TextView
         android:id="@+id/orderMenuPriceTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_margin="3dp"
         android:layout_weight="1"
         android:background="#BFBFBF"
@@ -40,9 +29,9 @@
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="0.3"
+        android:layout_weight="1"
         android:adjustViewBounds="true"
         android:background="#00FF0000"
         android:onClick="onClickDeleteOrderMenu"

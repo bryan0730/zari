@@ -50,7 +50,7 @@
             android:textSize="18sp" />
 
         <EditText
-            android:id="@+id/editTextId"
+            android:id="@+id/menuPriceEditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="2"
@@ -447,7 +447,7 @@
         android:textSize="17sp" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/addMenuCancelButton"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
         android:layout_gravity="center"

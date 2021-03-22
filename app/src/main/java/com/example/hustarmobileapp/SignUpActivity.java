@@ -26,6 +26,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class SignUpActivity extends AppCompatActivity {
+    private static String IP_ADDRESS="192.168.0.35";
     private final String MANAGER = "사업자";
 
     private EditText editTextTextId, editTextTextPassword, editTextTextPassword2, editTextTextPersonName, editTextPhone;
@@ -44,7 +45,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void init(){
         checkTextView = findViewById(R.id.pwCheckTextView);
         birthTextView = findViewById(R.id.birthTextView);
-        editTextTextId = findViewById(R.id.editTextId);
+        editTextTextId = findViewById(R.id.menuPriceEditText);
         editTextTextPassword = findViewById(R.id.editTextPassword);
         editTextTextPassword2 = findViewById(R.id.editTextTextPassword2);
         serviceRadioGroup = findViewById(R.id.serviceRadioGroup);
@@ -96,14 +97,14 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void onClickSignUp(View v){
-        /*
-        if (!checkPw || editTextTextPassword.getText().length()<0 || editTextPhone.getText().length()<0 ||
-                editTextTextId.getText().length()<0 || birthTextView.getText() == "" || editTextTextPersonName.getText().length()<0 || !genderRadioGroup.isClickable()){
+
+        if (!checkPw || editTextTextPassword.getText().length()==0 || editTextPhone.getText().length()==0 ||
+                editTextTextId.getText().length()==0 || birthTextView.getText().length()==0 || editTextTextPersonName.getText().length()==0 ){
             Toast.makeText(SignUpActivity.this, "다시 확인해 주세요.", Toast.LENGTH_LONG).show();
             return;
         }
 
-         */
+
 
         SecurityUtil securityUtil = new SecurityUtil();
         String name = editTextTextPersonName.getText().toString();
@@ -123,7 +124,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
         InsertData task = new InsertData();
-        task.execute("http://192.168.0.35/mtest.php", name, id, enPw, phone, birth, gender, userAuth);
+        task.execute("http://"+IP_ADDRESS+"/mtest.php", name, id, enPw, phone, birth, gender, userAuth);
         Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
         startActivity(intent);
         finish();
