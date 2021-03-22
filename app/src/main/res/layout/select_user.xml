@@ -35,7 +35,6 @@
         android:layout_marginStart="100dp"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="45dp"
-
         android:background="#00FF0000"
         android:onClick="goMasterLogoinPage"
         android:text="@string/master"

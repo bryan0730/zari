@@ -6,7 +6,7 @@
 
 
     <TextView
-        android:id="@+id/reservationTableNameTextViex"
+        android:id="@+id/reservationStoreNameTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
@@ -17,7 +17,7 @@
         android:textSize="24sp" />
 
     <TextView
-        android:id="@+id/reservationPeopleTextView"
+        android:id="@+id/reservationSelectedTableNumberTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
@@ -29,7 +29,7 @@
     v
 
     <TextView
-        android:id="@+id/reservationDateTextView"
+        android:id="@+id/reservationStoreDateTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="3dp"
