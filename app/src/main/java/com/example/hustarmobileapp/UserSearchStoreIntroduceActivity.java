@@ -35,8 +35,11 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
     private UserSearchStoreIntroduceAdapter adpater;            // ListView에 출력을 위한 어댑터
     private String                          emptyTableCount;    // 가게 내 남은 테이블 수
     private JSONArray                       emptyTables;
+    private String                          allTableCount;    // 가게 내 남은 테이블 수
+    private JSONArray                       allTables;
     private Intent                          intent;
-    private String                          url;
+    private String                          url;                // 남은 테이블 개수 가져오는 url
+    private String                          url2;               // 해당 가게 전체 테이블 개수 가져오는 url
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
         if (D) Log.i(TAG, "onCreate()");
         init();
         getSearchStoreListData();
+        getAllTableListData();
         // setSearchStoreList();
     }
 
@@ -56,11 +60,21 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
         searchStoreList         = new ArrayList<>();
         emptyTableCount         = "";
         url = "http://192.168.0.35/getEmptyTable.php";
+        url2 = "http://192.168.0.35/getAllTable.php";
 
         if (D) Log.i(TAG, "init()");
     }
 
-    // 통신을 통해 데이터 가져오기(예약 가능한 테이블들 가져온 후 길이로 수 파악)
+    // 통신을 통해 모든 테이블 수 데이터 가져오기
+    public void getAllTableListData() {
+        GetAllTableData task = new GetAllTableData();
+        task.execute(url2, searchStoreName);
+
+        if (D) Log.i(TAG, "getAllTableListData()");
+    }
+
+
+    // 통신을 통해 남은 테이블 수 데이터 가져오기
     public void getSearchStoreListData() {
         GetData task = new GetData();
         task.execute(url, searchStoreName);
@@ -70,7 +84,7 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
 
     // 어댑터를 통해 리스트 뷰에 데이터 입력
     public void setSearchStoreList() {
-        UserSearchStoreData data    = new UserSearchStoreData("image", searchStoreName, emptyTableCount);
+        UserSearchStoreData data    = new UserSearchStoreData("image", searchStoreName, emptyTableCount + '/' + allTableCount);
         searchStoreList.add(data);
 
         adpater                     = new UserSearchStoreIntroduceAdapter(UserSearchStoreIntroduceActivity.this, R.layout.user_search_store_adapter, searchStoreList);
@@ -79,26 +93,104 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
         if (D) Log.i(TAG, "setSearchStoreList()");
     }
 
-    // DB를 통해 받아온 데이터를 바탕으로 남은 테이블 수 출력
-    public void showList(String result) {
+    // DB를 통해 받아온 데이터를 바탕으로 모든 테이블 수 출력
+    public void showAllTableList(String result) {
         try {
             JSONObject jsonObj  = new JSONObject(result);
-            emptyTables         = jsonObj.getJSONArray(StringTagName.TAG_RESULT); // jsonobject가 배열 형태로 있음(모음)
-            emptyTableCount     = String.valueOf(emptyTables.length());
+            allTables         = jsonObj.getJSONArray(StringTagName.TAG_RESULT); // jsonobject가 배열 형태로 있음(모음)
+            allTableCount     = emptyTables.getJSONObject(0).getString("all_table_count");
+            //emptyTableCount     = String.valueOf(emptyTables.length());
         } catch (JSONException e) {
             e.printStackTrace();
         }
         if(D) Log.i(TAG, "showList()");
     }
 
-    // 클릭한 가게 내의 남은 테이블 가져온 후 개수 파악
+    // DB를 통해 받아온 데이터를 바탕으로 남은 테이블 수 출력
+    public void showList(String result) {
+        try {
+            JSONObject jsonObj  = new JSONObject(result);
+            emptyTables         = jsonObj.getJSONArray(StringTagName.TAG_RESULT); // jsonobject가 배열 형태로 있음(모음)
+            emptyTableCount     = emptyTables.getJSONObject(0).getString("empty_table");
+            //emptyTableCount     = String.valueOf(emptyTables.length());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if(D) Log.i(TAG, "showList()");
+    }
+
+    // 클릭한 가게 내의 모든 테이블 개수 파악
+    class GetAllTableData extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected void onPostExecute(String result) {
+            //super.onPostExecute(result);
+            showAllTableList(result);
+            setSearchStoreList();
+            Log.d(TAG, "POST response  - " + result);
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            String serverURL            = (String)params[0];
+            String selectedStoreName    = (String)params[1];
+
+            String postParameters = "name=" + selectedStoreName;
+
+            try {
+                // 출력 스트림을 통해 해당 URL로 데이터 전달
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.connect();
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+                // 응답을 받아서 해당 응답 별로 처리
+                int responseStatusCode = httpURLConnection.getResponseCode();
+                Log.d(TAG, "POST response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK)
+                    inputStream = httpURLConnection.getInputStream();
+                else
+                    inputStream = httpURLConnection.getErrorStream();
+
+
+                // 입력 스트림을 열어 가져온 값을 추가
+                InputStreamReader inputStreamReader     = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader           = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb                        = new StringBuilder();
+                String line                             = null;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+                bufferedReader.close();
+
+                return sb.toString().trim();
+            } catch (Exception e) {
+                Log.d(TAG, "InsertData: Error ", e);
+                return new String("Error: " + e.getMessage());
+            }
+        }
+    }
+
+
+    // 클릭한 가게 내의 남은 테이블 개수 파악
     class GetData extends AsyncTask<String, Void, String> {
 
         @Override
         protected void onPostExecute(String result) {
             //super.onPostExecute(result);
             showList(result);
-            setSearchStoreList();
             Log.d(TAG, "POST response  - " + result);
         }
 
