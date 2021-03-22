@@ -55,7 +55,7 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
         serachStoreListView     = findViewById(R.id.searchStoreListView);
         searchStoreList         = new ArrayList<>();
         emptyTableCount         = "";
-        url = "http://192.168.0.38/getEmptyTable.php";
+        url = "http://192.168.0.35/getEmptyTable.php";
 
         if (D) Log.i(TAG, "init()");
     }
@@ -73,7 +73,7 @@ public class UserSearchStoreIntroduceActivity extends AppCompatActivity {
         UserSearchStoreData data    = new UserSearchStoreData("image", searchStoreName, emptyTableCount);
         searchStoreList.add(data);
 
-        adpater                     = new UserSearchStoreIntroduceAdapter(com.example.myapplication.UserSearchStoreIntroduceActivity.this, R.layout.user_search_store_adapter, searchStoreList);
+        adpater                     = new UserSearchStoreIntroduceAdapter(UserSearchStoreIntroduceActivity.this, R.layout.user_search_store_adapter, searchStoreList);
         serachStoreListView.setAdapter(adpater);
 
         if (D) Log.i(TAG, "setSearchStoreList()");

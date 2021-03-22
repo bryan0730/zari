@@ -3,10 +3,16 @@ package com.example.hustarmobileapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // 사용자 화면 메인 페이지
 public class UserMainActivity extends AppCompatActivity {
@@ -38,7 +44,7 @@ public class UserMainActivity extends AppCompatActivity {
     // 검색 창에 가게명 입력 후, 검색 버튼 클릭 시
     public void onClickSearchStoreList(View v) {
         String inputStoreName   = searchEditText.getText().toString();
-        intent1                 = new Intent(this, com.example.myapplication.UserSearchStoreIntroduceActivity.class);
+        intent1                 = new Intent(this, com.example.hustarmobileapp.UserSearchStoreIntroduceActivity.class);
 
         intent1.putExtra("searchStoreName", inputStoreName);
         startActivity(intent1);
@@ -47,7 +53,7 @@ public class UserMainActivity extends AppCompatActivity {
 
     // 하단의 "등록된 가게 현황" 버튼 클릭 시
     public void onClickShowAllStore(View v) {
-        intent2 = new Intent(com.example.myapplication.UserMainActivity.this, com.example.myapplication.UserAllStoreIntroduceActivity.class);
+        intent2 = new Intent(com.example.hustarmobileapp.UserMainActivity.this, com.example.hustarmobileapp.UserAllStoreIntroduceActivity.class);
         startActivity(intent2);
         if (D) Log.i(TAG, "showAllStore()");
     }

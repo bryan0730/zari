@@ -57,7 +57,7 @@ public class UserShowMenuPageActivity extends AppCompatActivity {
     // 통신을 통해 데이터 가져오기
     public void getMenuListData() {
         GetData task = new GetData();
-        task.execute("http://192.168.0.38/getMenu.php", storeName);
+        task.execute("http://192.168.0.35/getMenu.php", storeName);
 
         if (D) Log.i(TAG, "getMenuListData()");
     }

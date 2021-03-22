@@ -11,7 +11,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -86,17 +85,6 @@ public class MasterPostActivity extends AppCompatActivity {
     private void init() {
         masterPosGridLayout = findViewById(R.id.masterPosGridLayout);
         storeNameSpinner = findViewById(R.id.storeNameSpinner);
-        storeNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
 
         GetStoreData task = new GetStoreData();
         task.execute("http://"+IP_ADDRESS+"/selectstorelist.php", Integer.toString(memberSeq));

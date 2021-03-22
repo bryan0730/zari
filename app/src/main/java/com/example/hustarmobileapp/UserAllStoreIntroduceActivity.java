@@ -46,7 +46,7 @@ public class UserAllStoreIntroduceActivity extends AppCompatActivity {
     public void init() {
         searchAllStoreListView  = findViewById(R.id.searchStoreListView);
         allStoreListData        = new ArrayList<>();
-        url                     = "http://192.168.0.38/getStore.php";
+        url                     = "http://192.168.0.35/getStore.php";
         if (D) Log.i(TAG, "init()");
     }
 

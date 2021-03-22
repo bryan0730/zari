@@ -64,10 +64,6 @@ public class AddStoreActivity extends AppCompatActivity {
     private ArrayList<String> cateArrayList = new ArrayList<String>();
     private ArrayAdapter<String> arrayAdapter;
 
-    private static final int PICK_FROM_CAMERA = 0;
-    private static final int PICK_FROM_ALBUM = 1;
-    private static final int CROP_FROM_iMAGE = 2;
-    private Uri mImageCaptureUri;
     private String absoultePath;
 
     @Override
@@ -81,7 +77,7 @@ public class AddStoreActivity extends AppCompatActivity {
                 DialogInterface.OnClickListener albumListener = new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        doTakeAlbumAction();
+
                         Log.i(TAG, "경로 : "+absoultePath);
                     }
                 };
@@ -91,37 +87,6 @@ public class AddStoreActivity extends AppCompatActivity {
         Log.i(TAG, "onCreate---------------end");
     }
 
-
-    public void doTakeAlbumAction() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType(android.provider.MediaStore.Images.Media.CONTENT_TYPE);
-        startActivityForResult(intent, PICK_FROM_ALBUM);
-    }
-
-    private void storeCropImage(Bitmap bitmap, String filePath) {
-        String dirPath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/storeImg";
-
-        File directory_SmartWheel = new File(dirPath);
-
-        if(!directory_SmartWheel.exists())
-            directory_SmartWheel.mkdir();
-
-        File copyFile = new File(filePath);
-        BufferedOutputStream out = null;
-
-        try {
-            copyFile.createNewFile();
-            out = new BufferedOutputStream(new FileOutputStream(copyFile));
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, out);
-
-            sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE,
-                    Uri.fromFile(copyFile)));
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     private void init() {
         Log.i(TAG, "init---------------start");
@@ -200,48 +165,6 @@ public class AddStoreActivity extends AppCompatActivity {
                     String resultData = data.getExtras().getString("address");
                     addressTextView.setText(resultData);
                 }
-                case PICK_FROM_ALBUM: {
-                    mImageCaptureUri = data.getData();
-                    Log.d(TAG, mImageCaptureUri.getPath().toString());
-
-                    Intent intent = new Intent("com.android.camera.action.CROP");
-
-                    intent.setDataAndType(mImageCaptureUri, "image/*");
-
-                    intent.putExtra("outputX", 200); // CROP한 이미지의 x축 크기
-                    intent.putExtra("outputY", 200); // CROP한 이미지의 y축 크기
-                    intent.putExtra("aspectX", 1); // CROP 박스의 X축 비율
-                    intent.putExtra("aspectY", 1); // CROP 박스의 Y축 비율
-                    intent.putExtra("scale", true);
-                    intent.putExtra("return-data", true);
-                    startActivityForResult(intent, CROP_FROM_iMAGE); // CROP_FROM_CAMERA case문 이동
-                    break;
-                }
-                case CROP_FROM_iMAGE:
-                {
-                    if(resultCode != RESULT_OK) {
-                        return;
-                    }
-                    final Bundle extras = data.getExtras();
-                    String filePath = Environment.getExternalStorageDirectory().getAbsolutePath()+
-                            "/storeImg/"+System.currentTimeMillis()+".jpg";
-
-                    if(extras != null)
-                    {
-                        Bitmap photo = extras.getParcelable("data"); // CROP된 BITMAP
-                        //iv_UserPhoto.setImageBitmap(photo); // 레이아웃의 이미지칸에 CROP된 BITMAP을 보여줌
-                        storeCropImage(photo, filePath); // CROP된 이미지를 외부저장소, 앨범에 저장한다.
-                        absoultePath = filePath;
-                        break;
-                    }
-                    // 임시 파일 삭제
-                    File f = new File(mImageCaptureUri.getPath());
-                    if(f.exists())
-                    {
-                        f.delete();
-                    }
-                }
-
             }
         }
 

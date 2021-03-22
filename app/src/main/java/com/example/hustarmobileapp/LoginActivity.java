@@ -107,15 +107,17 @@ public class LoginActivity extends AppCompatActivity {
                     editTextPw.setText("");
                     return;
                 }
+                Log.i(TAG,"2222222222222222222222222 : "+auth);
                 switch (auth){
                     case 0:
                         Log.i(TAG, "USER");
-                        Intent userIntent = new Intent(LoginActivity.this, MainActivity.class);
+                        Intent userIntent = new Intent(LoginActivity.this, UserMainActivity.class);
                         userIntent.putExtra("seq", seq);
                         userIntent.putExtra("name", name);
                         userIntent.putExtra("auth", auth);
                         startActivity(userIntent);
                         finish();
+                        break;
                     case 1:
                         Log.i(TAG, "MASTER");
                         if(storeSeq.equals("null")) {
@@ -141,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                             this.cancel(true);
                             Log.i(TAG, "Login status - " + this.getStatus());
                         }
+                        break;
                 }
             }
         }

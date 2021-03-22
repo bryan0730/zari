@@ -13,17 +13,18 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class UserStoreDetailAdapter extends ArrayAdapter<com.example.myapplication.UserAllStoreDetailData> {
+public class UserStoreDetailAdapter extends ArrayAdapter<UserAllStoreDetailData> {
     Context                                     context;
     int                                         resId;
-    private ArrayList<com.example.myapplication.UserAllStoreDetailData>   datas;
+    private ArrayList<UserAllStoreDetailData>   datas;
 
-    public UserStoreDetailAdapter(@NonNull Context context, int resId, @NonNull ArrayList<com.example.myapplication.UserAllStoreDetailData> datas) {
+    public UserStoreDetailAdapter(@NonNull Context context, int resId, @NonNull ArrayList<UserAllStoreDetailData> datas) {
         super(context, resId, datas);
         this.context    = context;
         this.resId      = resId;
         this.datas      = datas;
     }
+
 
     @Override
     public int getCount() {
@@ -36,7 +37,7 @@ public class UserStoreDetailAdapter extends ArrayAdapter<com.example.myapplicati
         LayoutInflater inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         convertView = inflater.inflate(resId, null);
 
-        com.example.myapplication.UserAllStoreDetailData data = datas.get(position);
+        UserAllStoreDetailData data = datas.get(position);
 
         Button storeAllDetail = convertView.findViewById(R.id.storeAllDetail);
 //        storeAllDetail.setTextColor(Color.WHITE);
@@ -45,7 +46,7 @@ public class UserStoreDetailAdapter extends ArrayAdapter<com.example.myapplicati
         storeAllDetail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, com.example.myapplication.UserStoreDetailPageActivity.class);
+                Intent intent = new Intent(context, UserStoreDetailPageActivity.class);
                 intent.putExtra("storeDetailName", data.getStoreName());
                 intent.putExtra("storeDetailAddress", data.getStoreAddress());
                 intent.putExtra("storeDetailIntroduce", data.getStoreIntroduce());
