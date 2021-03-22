@@ -70,5 +70,9 @@
     <string name="mn_name">메뉴 이름</string>
     <string name="mn_price">메뉴 가격</string>
 
+    <string name="store_search">매장 검색 결과</string>
+    <string name="store_detail_search">가게 상세 정보</string>
+    <string name="show_menu">메뉴 보기</string>
+    <string name="show_store_menu">주문 가능한 메뉴</string>
 
 </resources>

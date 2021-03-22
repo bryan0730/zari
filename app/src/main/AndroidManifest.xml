@@ -22,6 +22,11 @@
         <activity
             android:name=".MasterPostActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".UserShowMenuPageActivity"/>
+        <activity android:name=".UserStoreDetailPageActivity"/>
+        <activity android:name=".UserAllStoreIntroduceActivity"/>
+        <activity android:name=".UserSearchStoreIntroduceActivity"/>
+        <activity android:name=".UserMainActivity"/>
         <activity android:name=".BirthActivity" />
         <activity android:name=".SignUpActivity" /> <!-- tttttttt -->
         <activity android:name=".LoginActivity" />
